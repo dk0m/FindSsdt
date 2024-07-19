@@ -65,10 +65,10 @@ int main()
     DWORD_PTR ntoskrnlBase = (DWORD_PTR)LoadLibraryA("ntoskrnl.exe");
     auto kernelTextSection = GetTextSection(ntoskrnlBase);
     
-    auto kistOffset = FindOffsetToSSDT(ntoskrnlBase, kernelTextSection);
+    auto ssdtOffset = FindOffsetToSSDT(ntoskrnlBase, kernelTextSection);
 
     auto kernelImageInfo = GetKernelImageInfo();
     auto kernelBase = kernelImageInfo.ImageBase;
 
-    printf("SSDT Address: 0x%p\n", (PVOID)((DWORD_PTR)kernelBase + kistOffset));
+    printf("SSDT Address: 0x%p\n", (PVOID)((DWORD_PTR)kernelBase + ssdtOffset));
 }
